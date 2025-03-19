@@ -13,11 +13,12 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  // Function to handle login action
   void _login() {
     if (_formKey.currentState!.validate()) {
       context.read<LoginScreenController>().onLogin(
-          email: _emailController.text, password: _passwordController.text, context: context);
+          email: _emailController.text,
+          password: _passwordController.text,
+          context: context);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Welcome, '),
@@ -30,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFEDF6F9), // Light pastel background
+      backgroundColor: Color(0xFFEDF6F9),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -40,15 +41,12 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // App Logo or Placeholder
                   Icon(
                     Icons.self_improvement,
                     size: 80.0,
-                    color: Color(0xFF006D77), // Calm green-blue
+                    color: Color(0xFF006D77),
                   ),
                   SizedBox(height: 24.0),
-
-                  // Welcome Text
                   Text(
                     'Welcome Back',
                     textAlign: TextAlign.center,
@@ -64,12 +62,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Color(0xFF83C5BE), // Soothing lighter tone
+                      color: Color(0xFF83C5BE),
                     ),
                   ),
                   SizedBox(height: 32.0),
-
-                  // Email Field
                   TextFormField(
                     controller: _emailController,
                     decoration: InputDecoration(
@@ -95,8 +91,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                   SizedBox(height: 16.0),
-
-                  // Password Field
                   TextFormField(
                     controller: _passwordController,
                     decoration: InputDecoration(
@@ -121,12 +115,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                   SizedBox(height: 24.0),
-
-                  // Login Button
                   ElevatedButton(
                     onPressed: _login,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF006D77), // Calm green-blue
+                      backgroundColor: Color(0xFF006D77), 
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),
                       ),

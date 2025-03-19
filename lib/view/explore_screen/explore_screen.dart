@@ -10,20 +10,49 @@ class _ExploreScreenState extends State<ExploreScreen> {
     {
       'icon': Icons.self_improvement,
       'title': 'Meditation Videos',
+      'videos': [
+        'Mindfulness Meditation',
+        'Deep Breathing Exercise',
+        'Guided Meditation for Sleep',
+        'Morning Yoga Meditation',
+        'Stress Relief Meditation'
+      ],
     },
     {
       'icon': Icons.fitness_center,
       'title': 'Fitness Classes',
+      'videos': [
+        'Home Workout Routine',
+        'Cardio for Beginners',
+        'Strength Training Basics',
+        'Full Body Stretch',
+        'Pilates for Core Strength'
+      ],
     },
     {
       'icon': Icons.nature,
       'title': 'Nature Therapy',
+      'videos': [
+        'Forest Bathing Guide',
+        'Ocean Sounds Relaxation',
+        'Bird Songs Therapy',
+        'Mountain Scenery Meditation',
+        'Walking in Nature Benefits'
+      ],
     },
     {
       'icon': Icons.spa,
       'title': 'Relaxation Techniques',
+      'videos': [
+        'Progressive Muscle Relaxation',
+        'Aromatherapy for Sleep',
+        'Calm Breathing Exercise',
+        'Self-Massage Techniques',
+        'Visualization for Stress Relief'
+      ],
     },
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,10 +92,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   final resource = _resources[index];
                   return GestureDetector(
                     onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('${resource['title']} selected!'),
-                          backgroundColor: Colors.teal,
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => VideoListScreen(
+                            title: resource['title'],
+                            videos: resource['videos'],
+                          ),
                         ),
                       );
                     },
@@ -101,6 +133,41 @@ class _ExploreScreenState extends State<ExploreScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class VideoListScreen extends StatelessWidget {
+  final String title;
+  final List<String> videos;
+
+  VideoListScreen({required this.title, required this.videos});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(title)),
+      body: ListView.builder(
+        padding: EdgeInsets.all(16),
+        itemCount: videos.length,
+        itemBuilder: (context, index) {
+          return Card(
+            child: ListTile(
+              title: Text(videos[index]),
+              leading:
+                  Icon(Icons.play_circle_fill, color: Colors.teal, size: 40),
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Playing: ${videos[index]}'),
+                    backgroundColor: Colors.teal,
+                  ),
+                );
+              },
+            ),
+          );
+        },
       ),
     );
   }

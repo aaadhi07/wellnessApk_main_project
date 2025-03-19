@@ -108,7 +108,6 @@ class _MeditationScreenState extends State<MeditationScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            // Reset Button
             if (_isMeditating || _remainingTime < 300)
               ElevatedButton(
                 onPressed: _stopMeditation,
@@ -130,7 +129,6 @@ class _MeditationScreenState extends State<MeditationScreen> {
                 ),
               ),
             const SizedBox(height: 40),
-            // Motivational Quote
             const Text(
               '"Breathe in calm, breathe out stress."',
               textAlign: TextAlign.center,
